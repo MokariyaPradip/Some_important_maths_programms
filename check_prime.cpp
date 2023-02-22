@@ -5,19 +5,25 @@
 #include <algorithm>
 using namespace std;
 
-int isprime(int a)
+bool isprime(int a)
 {
     int j;
     if(a==1)
-        return 0;
-    if(a==2||a==3||a==5||a==7)
-        return 1;
-    else if((!(a%2))||(!(a%3))||(!(a%5))||(!(a%7)))
-            return 0;
+        return false;
+    if(a==2||a==3)
+        return true;
+    else if((!(a%2))||(!(a%3)))
+            return false;
    
-    else if((a+1)%6==0||(a-1)%6==0)
-            return 1;
-    return 0;
+    else
+    {
+        for(int i=5; i*i <= a; i+=6)
+        {
+            if((a%i)==0 || (a%(i+2))==0)
+                return false;
+        }
+    }
+    return true;
 }
 
 int main() {
